@@ -6,8 +6,8 @@ Resources:
     Properties:
       CidrBlock: 172.31.0.0/16
       EnableDnsHostnames: True
-      EnableDnsSupport: True      
- 
+      EnableDnsSupport: True
+
   MountTargetSubnetOne:
     Type: AWS::EC2::Subnet
     Properties:
@@ -28,11 +28,11 @@ Resources:
       CidrBlock: 172.31.3.0/24
       VpcId: !Ref MountTargetVPC
       AvailabilityZone: "us-east-1c"
- 
+
   FileSystemResource:
     Type: 'AWS::EFS::FileSystem'
     Properties:
-      PerformanceMode: maxIO
+      PerformanceMode: generalPurpose
       Encrypted: true
       FileSystemTags:
         - Key: Name
@@ -69,7 +69,7 @@ Resources:
       SubnetId: !Ref MountTargetSubnetThree
       SecurityGroups:
       - !GetAtt MountTargetVPC.DefaultSecurityGroup
- 
+
   AccessPointResource:
     Type: 'AWS::EFS::AccessPoint'
     Properties:
